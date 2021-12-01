@@ -44,8 +44,7 @@ while yes_or_no_start == False:
                 text_spaceman_back_earth = font3.render("宇航员正要返回地球", True, (250, 0, 0))
                 text_spaceman_back_earth2 = font4.render("可却发现自己遇到了重重困难...", True, (250, 0, 0))
                 text_spaceman_back_earth3 = font5.render("Level1",True,(250,0,0))
-                text_spaceman_back_earth4 = font6.render("帮助宇航员找回丢失的3个零件,WASD控制",True,(250,0,0))
-                text_lingjian_number  = font7.render(f"找到零件个数:{number}",True,(250,0,0))
+                text_spaceman_back_earth4 = font6.render("帮助宇航员找回丢失的1个零件,WASD控制",True,(250,0,0))
                 #blit it
                 screen.blit(text_spaceman_back_earth,(130,180))
                 pygame.display.flip()
@@ -70,17 +69,18 @@ while yes_or_no_start == False:
                 spaceman1 = pygame.image.load('宇航员2.png')
                 spaceman2 = pygame.image.load('宇航员.png')
                 l1 = pygame.image.load('零件1.png')
-                l2 = pygame.image.load('零件2.png')
-                l3 = pygame.image.load('零件3.png')
                 #设置三个零件的坐标
                 l1x = random.randint(0,100)
                 l1y = random.randint(0,100)
                 x = 150
                 y = 150
                 screen.blit(spaceman1,(x,y))
-                screen.blit(text_lingjian_number,(100,100))
                 pygame.display.flip()
                 while True:
+                    if y == l1y and x == l1x:
+                        screen.blit(l1,(l1x,l1y))
+                        print('Yes')
+                    screen.blit(l1,(l1x,l1y))
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             exit(0)
@@ -90,36 +90,20 @@ while yes_or_no_start == False:
                                 y -= 2
                                 screen.blit(spaceman1,(x,y))
                                 pygame.display.flip()
-                                if y+5 >= l1y or y-5 >= l1y and x+5 >= l1x or x-5 >= l1x:
-                                    screen.blit(l1,(l1x,l1y))
-                                    number += 1
                                 screen.fill('black')
-                                screen.blit(text_lingjian_number, (10, 10))
                             elif key_list[pygame.K_s]:
                                 y += 2
                                 screen.blit(spaceman1,(x,y))
                                 pygame.display.flip()
-                                if y + 5 >= l1y or y - 5 >= l1y and x + 5 >= l1x or x - 5 >= l1x:
-                                    screen.blit(l1, (l1x, l1y))
-                                    number += 1
                                 screen.fill('black')
-                                screen.blit(text_lingjian_number, (10, 10))
                             elif key_list[pygame.K_a]:
                                 x -= 2
                                 screen.blit(spaceman1,(x,y))
                                 pygame.display.flip()
-                                if y + 5 >= l1y or y - 5 >= l1y and x + 5 >= l1x or x - 5 >= l1x:
-                                    screen.blit(l1, (l1x, l1y))
-                                    number += 1
                                 screen.fill('black')
-                                screen.blit(text_lingjian_number, (10, 10))
                             elif key_list[pygame.K_d]:
                                 x += 2
                                 screen.blit(spaceman2,(x,y))
                                 pygame.display.flip()
-                                if y + 5 >= l1y or y - 5 >= l1y and x + 5 >= l1x or x - 5 >= l1x:
-                                    screen.blit(l1, (l1x, l1y))
-                                    number += 1
                                 screen.fill('black')
-                                screen.blit(text_lingjian_number, (10, 10))
 
