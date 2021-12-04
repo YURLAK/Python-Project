@@ -1,3 +1,4 @@
+#科技节作品：拯救宇航员
 #导入模块
 import pygame
 import sys,time,random
@@ -14,10 +15,14 @@ pygame.display.set_caption('拯救宇航员')#设置窗口标题
 #开始界面设置
 font = pygame.font.Font(".ttf/字体.ttf",60)#设置‘拯救宇航员’的字体
 font2 = pygame.font.Font(".ttf/字体.ttf",40)#设置‘空格开始’的字体
+font_auther = pygame.font.Font(".ttf/字体.ttf",30)#设置‘原创：Sun’的字体
+
 text = font.render("拯救宇航员",True,(20,0,255))#设置字体内容，颜色
 text2 = font2.render("空格开始",True,(255,20,5))#设置字体内容，颜色
-screen.blit(text, (100,80))#把两个文本推送到屏幕上
+text_auther = font_auther.render("原创：Sun",True,(250,0,5))
+screen.blit(text, (100,80))#把三个文本推送到屏幕上
 screen.blit(text2,(150,250))
+screen.blit(text_auther,(160,200))
 pygame.display.flip()#更新窗口
 while True:#进入游戏主循环
     for event in pygame.event.get():
@@ -93,7 +98,9 @@ while True:#进入游戏主循环
                     Y = l1y - y
                     X = l1x - x
                     print_xy = False
+                    #检测坐标差
                     if X <= 5 and X >= -5 and Y <= 5 and Y >= -5:
+                        #如果坐标差在5以内，就找到零件
                         endtime = round(time.time() - starttime)
                         print_xy = True
                         screen.blit(l1,(l1x+5,l1y+5))
@@ -103,8 +110,8 @@ while True:#进入游戏主循环
                         font_found = pygame.font.Font('.ttf/字体.ttf',30)
                         font_time = pygame.font.Font('.ttf/字体.ttf', 35)
                         text_found = font_found.render("恭喜你，找到了丢失零件！",True,(30,140,250))
-                        text_time = font_time.render(f"耗时{endtime}秒",True,(0,10,250))
-
+                        text_time = font_time.render(f"耗时{endtime}秒",True,(0,10,250))#找到零件所用的时间
+                        #显示两个文本
                         time.sleep(2)
                         pygame.display.init()
                         screen.fill('black')
@@ -116,19 +123,21 @@ while True:#进入游戏主循环
                         screen.blit(text_time,(120,170))
                         pygame.display.flip()
                         time.sleep(2)
+
+                        #退出
                         exit(0)
 
                     elif X <= 10 and X >= -10 and Y <= 10 and Y >= -10:
-                        print(Fore.BLUE+"你快找到零件了！")
+                        print(Fore.BLUE+"你快找到零件了！")#坐标差如果在10以内，判定为快找到零件
 
                     elif X <= 20 and X >= -20 and Y <= 10 and Y >= -20:
-                        print(Fore.BLUE + "你离零件很近了！")
+                        print(Fore.BLUE + "你离零件很近了！")#坐标差如果在20以内，那么宇航员离零件很近
 
                     elif X <= 40 and X >= -40 and Y <= 40 and Y >= -40:
-                        print(Fore.BLUE + "你和零件有一段距离了！")
+                        print(Fore.BLUE + "你和零件有一段距离了！")#坐标差在40以内，那么宇航员与零件有一定距离
 
                     else:
-                        print(Fore.BLUE+"零件离你还很远！")
+                        print(Fore.BLUE+"零件离你还很远！")#坐标差较大，就说明宇航员离零件很远
 
                     if print_xy == True:
                         print(Fore.RED+"检测雷达已关闭...")
@@ -163,3 +172,5 @@ while True:#进入游戏主循环
                                 screen.blit(spaceman2,(x,y))
                                 pygame.display.flip()
                                 screen.fill('black')
+#原创：Sun
+#2021/12/4制作完成
